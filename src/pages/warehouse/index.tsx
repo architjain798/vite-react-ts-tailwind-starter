@@ -7,6 +7,7 @@ import { Button } from 'src/components/ui/button'
 interface WarehouseItem {
   id: number
   name: string
+  category: string
   quantity: number
   status: string
 }
@@ -24,8 +25,8 @@ const categories = ['All', ...Array.from(new Set(staticData.map((item) => item.c
 const WarehousePage: React.FC = () => {
   const [filter, setFilter] = useState('All')
   const filteredData = useMemo(
-    () => filter === 'All' ? staticData : staticData.filter(item => item.category === filter),
-    [filter]
+    () => (filter === 'All' ? staticData : staticData.filter((item) => item.category === filter)),
+    [filter],
   )
 
   const columns: TableColumn<WarehouseItem>[] = [
@@ -33,33 +34,43 @@ const WarehousePage: React.FC = () => {
     { key: 'name', label: 'Name' },
     { key: 'category', label: 'Category' },
     { key: 'quantity', label: 'Quantity' },
-    { key: 'status', label: 'Status', render: (value) => (
-      <span className={
-        value === 'In Stock' ? 'text-green-600' :
-        value === 'Low Stock' ? 'text-yellow-600' :
-        'text-red-600'
-      }>{value}</span>
-    ) },
+    {
+      key: 'status',
+      label: 'Status',
+      render: (value) => (
+        <span
+          className={
+            value === 'In Stock' ? 'text-green-600' : value === 'Low Stock' ? 'text-yellow-600' : 'text-red-600'
+          }
+        >
+          {value}
+        </span>
+      ),
+    },
   ]
 
   return (
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar />
-      <main className="flex-1 p-6 flex flex-col">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+      <main className="flex flex-1 flex-col p-6">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <h1 className="text-2xl font-semibold text-gray-900">Warehouse Inventory</h1>
-          <Button className="bg-cyan-500 text-white px-6 py-2 rounded-md">Add Item</Button>
+          <Button className="rounded-md bg-cyan-500 px-6 py-2 text-white">Add Item</Button>
         </div>
-        <div className="mb-4 flex flex-col sm:flex-row sm:items-center gap-2">
-          <label htmlFor="category-filter" className="text-sm text-gray-700 mr-2">Filter by Category:</label>
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label htmlFor="category-filter" className="mr-2 text-sm text-gray-700">
+            Filter by Category:
+          </label>
           <select
             id="category-filter"
             value={filter}
-            onChange={e => setFilter(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 text-sm"
+            onChange={(e) => setFilter(e.target.value)}
+            className="rounded border border-gray-300 px-2 py-1 text-sm"
           >
-            {categories.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
             ))}
           </select>
         </div>

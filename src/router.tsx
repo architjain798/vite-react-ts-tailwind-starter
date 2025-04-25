@@ -18,7 +18,7 @@ export const routerObjects: RouteObject[] = [
   {
     path: '/dashboard',
     Component: DashboardPage,
-  }
+  },
 ]
 
 export function createRouter(): ReturnType<typeof createBrowserRouter> {

@@ -55,9 +55,9 @@ const Table = <T extends object>({ columns, data }: TableProps<T>) => {
     <div className="overflow-x-auto w-full rounded-lg border border-gray-200 bg-white">
       <table className="min-w-full rounded-lg overflow-hidden">
         <thead className="bg-[#f5f2ef]">
-          {table.getHeaderGroups().map(headerGroup => (
+          {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
+              {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
                   className="px-6 py-3 text-left text-base font-semibold text-gray-800 tracking-wide border-b border-gray-200 select-none cursor-pointer"
@@ -74,9 +74,9 @@ const Table = <T extends object>({ columns, data }: TableProps<T>) => {
           ))}
         </thead>
         <tbody className="bg-white">
-          {table.getRowModel().rows.map(row => (
+          {table.getRowModel().rows.map((row) => (
             <tr key={row.id} className="hover:bg-[#f5f2ef] transition-colors">
-              {row.getVisibleCells().map(cell => (
+              {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-6 py-3 whitespace-nowrap text-base text-gray-900 border-b border-gray-100">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
@@ -107,7 +107,7 @@ const Table = <T extends object>({ columns, data }: TableProps<T>) => {
             setPageIndex(0)
           }}
         >
-          {[5, 10, 20, 50].map(pageSize => (
+          {[5, 10, 20, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

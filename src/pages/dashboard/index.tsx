@@ -41,13 +41,20 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar />
-      <main className="flex-1 p-12 flex flex-col bg-white">
-        <h1 className="text-3xl font-normal text-gray-900 mb-8">Warehouse list</h1>
-        <div className="flex gap-4 mb-8">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded shadow-none" style={{boxShadow: 'none'}}>+ Create Warehouse</Button>
-          <Button variant="outline" className="border-gray-400 text-gray-800 px-6 py-2 rounded shadow-none bg-white">Upload Via CSV</Button>
+      <main className="flex h-screen min-h-screen flex-1 flex-col overflow-y-auto bg-white p-12">
+        <h1 className="mb-8 text-3xl font-normal text-gray-900">Warehouse list</h1>
+        <div className="mb-8 flex gap-4">
+          <Button
+            className="rounded bg-blue-500 px-6 py-2 text-white shadow-none hover:bg-blue-600"
+            style={{ boxShadow: 'none' }}
+          >
+            + Create Warehouse
+          </Button>
+          <Button variant="outline" className="rounded border-gray-400 bg-white px-6 py-2 text-gray-800 shadow-none">
+            Upload Via CSV
+          </Button>
         </div>
-        <div className="bg-[#f5f2ef] p-4 rounded shadow-sm">
+        <div className="rounded bg-[#f5f2ef] p-4 shadow-sm">
           <Table columns={columns} data={data} />
         </div>
       </main>
