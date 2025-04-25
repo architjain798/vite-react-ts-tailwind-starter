@@ -4,6 +4,7 @@ import ErrorPage from './components/error-page'
 import { getDefaultLayout } from './components/layout'
 import HomePage from './pages/home'
 import LoginPage from './pages/login'
+import DashboardPage from './pages/dashboard'
 
 export const routerObjects: RouteObject[] = [
   {
@@ -14,6 +15,10 @@ export const routerObjects: RouteObject[] = [
     path: '/login',
     Component: LoginPage,
   },
+  {
+    path: '/dashboard',
+    Component: DashboardPage,
+  }
 ]
 
 export function createRouter(): ReturnType<typeof createBrowserRouter> {

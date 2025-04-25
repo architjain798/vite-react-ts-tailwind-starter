@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from 'src/components/ui/button'
 
 const LoginPage: React.FC = () => {
   const [userId, setUserId] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // TODO: Add authentication logic here
-    alert(`User Id: ${userId}\nPassword: ${password}`)
+    // For now, just navigate to dashboard after login
+    navigate('/dashboard')
   }
 
   return (
